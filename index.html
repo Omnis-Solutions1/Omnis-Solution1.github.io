@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Giant Pumpkin Calculator</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; max-width: 400px; }
+        input { margin-bottom: 15px; padding: 10px; width: 100%; box-sizing: border-box; }
+        button { padding: 15px; width: 100%; background: #ff7a00; color: white; border: none; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .result { margin-top: 20px; padding: 15px; background: #f0f0f0; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <h2>OTT Weight Calculator</h2>
+    
+    <label>Circumference (inches)</label>
+    <input type="number" id="circ" placeholder="e.g. 150">
+
+    <label>End-to-End (inches)</label>
+    <input type="number" id="e2e" placeholder="e.g. 100">
+
+    <label>Side-to-Side (inches)</label>
+    <input type="number" id="s2s" placeholder="e.g. 105">
+
+    <button onclick="calculate()">Calculate Weight</button>
+
+    <div class="result">
+        <h3 id="weightDisplay">Weight: 0 lbs</h3>
+        <p id="ottDisplay">Total OTT: 0 inches</p>
+    </div>
+
+    <script>
+        function calculate() {
+            // 1. Get the numbers from the inputs
+            let c = parseFloat(document.getElementById('circ').value) || 0;
+            let e2e = parseFloat(document.getElementById('e2e').value) || 0;
+            let s2s = parseFloat(document.getElementById('s2s').value) || 0;
+            
+            // 2. Add them together
+            let totalOtt = c + e2e + s2s;
+            
+            // 3. Apply the mathematical formula
+            let estimatedWeight = 0.0000795 * Math.pow(totalOtt, 2.76);
+            
+            // 4. Update the screen
+            document.getElementById('weightDisplay').innerText = "Weight: " + estimatedWeight.toFixed(1) + " lbs";
+            document.getElementById('ottDisplay').innerText = "Total OTT: " + totalOtt + " inches";
+        }
+    </script>
+
+</body>
+</html>
